@@ -1,0 +1,47 @@
+.main-container{
+    background-color: #f4f5f8;
+    height: 90vh;
+    width: 90vw;
+    display: flex;
+}
+.sidebar-container{
+   display: flex;
+   flex-direction: column;
+    flex: 0.3;
+    }
+    
+.work-container{
+
+    flex: 0.7;
+    }
+
+.sb-header{
+background-color: white;
+border-radius: 20px;
+padding: 10px 5 px;
+margin: 5px;
+display: flex;
+justify-content: space-around;
+    }
+    .sb-search{
+        background-color: white;
+        border-radius: 20px;
+        padding: 10px 10px;
+        margin: 10px;
+        display: flex;
+        align-content: center;
+    }
+    .search-box{
+        outline-width: 0;
+        border: none;
+        margin-left: 10px;
+        font-size: 1.5rem;
+    }
+    .sb-conversation{
+        background-color: white;
+        border-radius: 20px;
+        padding: 5px 10px;
+        margin: 10px;
+        flex: 1;
+
+    }
