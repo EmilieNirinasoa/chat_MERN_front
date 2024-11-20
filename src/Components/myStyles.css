@@ -10,10 +10,7 @@
     flex: 0.3;
     }
     
-.work-container{
 
-    flex: 0.7;
-    }
 
 .sb-header{
 background-color: white;
@@ -91,3 +88,20 @@ justify-content: space-around;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
     }
+
+    .ChatArea-Container{
+        flex: 0.7;
+        display: flex;
+        flex-direction: column;
+        }
+        
+.ChatArea-header{
+    background-color: orange;
+}
+.messages-container{
+    background-color: aquamarine;
+    flex: 1;
+}
+.text-input-area{
+    background-color: yellow;
+}

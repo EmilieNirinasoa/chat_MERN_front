@@ -60,7 +60,7 @@ export default function Sidebar() {
     </div>
     <div className='sb-conversation'>
     {conversations.map((conversation)=>{
-        return <ConversationItem  props={conversation} />
+        return <ConversationItem  props={conversation} key={conversation.name}/>
     })}
     </div>
     </div>
