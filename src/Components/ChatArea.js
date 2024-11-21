@@ -5,7 +5,11 @@ import SendIcon from '@mui/icons-material/Send';
 import MessageOthers from './MessageOthers';
 import MessageSelf from './MessageSelf';
 
-export default function ChatArea({props}) {
+export default function ChatArea() {
+  const props={
+    name:'Emilie',
+    TimesTamps:'12:00'
+  }
   return (
     <div className='ChatArea-Container'>
          <div className='ChatArea-header'>

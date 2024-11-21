@@ -2,12 +2,12 @@ import React from 'react';
 import './myStyles.css'
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from '@mui/material';
-export default function UsersGroups() {
+export default function Users() {
   return (
     <div className='list-container'>
     <div className='ug-header'>
     <img src='' alt='logo' style={{height:'2rem',width:'2rem',marginLeft:'10px'}}/>
-    <p className='ug-title'> Avalaibles Groups</p>
+    <p className='ug-title'> Users Onlines</p>
     </div>
     <div className='sb-search'>
         <IconButton>
@@ -18,39 +18,39 @@ export default function UsersGroups() {
     <div className='ug-list'>
         <div className='list-tem'>
            <div className='con-icon'>T</div>
-           <div className='con-title'>Test Group</div>
+           <div className='con-title'>Test User</div>
        </div>
        <div className='list-tem'>
            <div className='con-icon'>T</div>
-           <div className='con-title'>Test Group</div>
+           <div className='con-title'>Test User</div>
        </div>
        <div className='list-tem'>
            <div className='con-icon'>T</div>
-           <div className='con-title'>Test Group</div>
+           <div className='con-title'>Test User</div>
        </div>
        <div className='list-tem'>
            <div className='con-icon'>T</div>
-           <div className='con-title'>Test Group</div>
+           <div className='con-title'>Test User</div>
        </div>
        <div className='list-tem'>
            <div className='con-icon'>T</div>
-           <div className='con-title'>Test Group</div>
+           <div className='con-title'>Test User</div>
        </div>
        <div className='list-tem'>
            <div className='con-icon'>T</div>
-           <div className='con-title'>Test Group</div>
+           <div className='con-title'>Test User</div>
        </div>
        <div className='list-tem'>
            <div className='con-icon'>T</div>
-           <div className='con-title'>Test Group</div>
+           <div className='con-title'>Test User</div>
        </div>
        <div className='list-tem'>
            <div className='con-icon'>T</div>
-           <div className='con-title'>Test Group</div>
+           <div className='con-title'>Test User</div>
        </div>
        <div className='list-tem'>
            <div className='con-icon'>T</div>
-           <div className='con-title'>Test Group</div>
+           <div className='con-title'>Test User</div>
        </div>
   
    
