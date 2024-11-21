@@ -86,6 +86,9 @@ justify-content: space-around;
     }
     .con-LastMessage{
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 0.75rem;
+        padding: 10px;
+
 
     }
 
@@ -96,7 +99,14 @@ justify-content: space-around;
         }
         
 .ChatArea-header{
-    background-color: orange;
+    display: flex;
+
+    background-color: white;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 10px;
+    margin: 10px;
+    border-radius: 20px;
 }
 .messages-container{
     background-color: aquamarine;
@@ -104,4 +114,65 @@ justify-content: space-around;
 }
 .text-input-area{
     background-color: yellow;
+}
+
+.header-text{
+display: flex;
+flex-direction: column;
+justify-content: center;
+flex: 1;
+}
+
+
+.messages-container{
+    flex: 1;
+    background-color: white;
+    padding: 10px 10px;
+    margin: 10px;
+    border-radius: 20px;
+}
+.text-input-area{
+    background-color: white;
+    padding: 10px 10px;
+    margin: 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.self-message-container{
+    display: flex;
+    justify-content: flex-end;
+}
+.messageBox{
+    display: flex;
+    background-color: rgb(201, 75, 75);
+    width: max-content;
+    padding: 10px 10px;
+    margin: 5px;
+    border-radius: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    flex-direction: column;
+    justify-self: center;
+    align-self: center;
+    
+}
+.self-TimesTamp{
+    align-self: flex-end;
+    font-size: 0.75rem;
+    font-weight: lighter;
+    color: rgb(184, 184, 184);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.other-text-content{
+    background-color: #d9d9d9;
+    padding: 10px 10px;
+    margin: 5px;
+    border-radius: 20px;
+    width: max-content;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+   
 }
