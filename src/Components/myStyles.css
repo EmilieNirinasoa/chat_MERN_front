@@ -82,10 +82,7 @@ box-shadow:
         padding: 5px;
         margin: 5px;
         border-radius: 20px;
-        box-shadow:
-        inset 0 -3em 3em rgba(247, 247, 247, 0.2),
-        0 0 0 2px white,
-        0.3em 0.3em 1em rgba(100, 100, 111, 0.2);
+        
     }
 
     .con-title{
