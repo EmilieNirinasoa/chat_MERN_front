@@ -130,6 +130,11 @@ flex: 1;
     padding: 10px 10px;
     margin: 10px;
     border-radius: 20px;
+    overflow: scroll;
+    /* overflow: scroll;il fait scroller les messages */
+}
+.messages-container::-webkit-scrollbar{
+    display: none;
 }
 .text-input-area{
     background-color: white;
