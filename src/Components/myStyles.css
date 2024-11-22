@@ -1,3 +1,13 @@
+.dark{
+    background-color: #2d3941 !important;
+    color: whitesmoke !important;
+}
+
+.icon{
+    size: 1.25em !important;
+    height: 1.25em !important;
+}
+
 .main-container{
     background-color: #f4f5f8;
     height: 90vh;
