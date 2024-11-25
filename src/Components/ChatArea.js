@@ -4,27 +4,30 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import MessageOthers from './MessageOthers';
 import MessageSelf from './MessageSelf';
+import { useSelector } from 'react-redux';
 
 export default function ChatArea() {
+  const lightTheme = useSelector((state) => state.themeKey);
+  const themeClass = lightTheme ? 'light' : 'dark';
   const props={
     name:'Emilie',
     TimesTamps:'12:00'
   }
   return (
-    <div className='ChatArea-Container'>
-         <div className='ChatArea-header'>
-         <p className='con-icon'>{props.name[0]}</p>
+    <div className={`ChatArea-Container ${themeClass}`}>
+         <div  className={`ChatArea-header ${themeClass}`}>
+         <p  className={`con-icon ${themeClass}`}>{props.name[0]}</p>
         
-        <div className='header-text'>
-        <p className='con-title'>{props.name}</p>
-        <p className='con-TimesTamp'>{props.TimesTamps}</p>
+        <div   className={`header-text ${themeClass}`}>
+        <p  className={`con-title ${themeClass}`}>{props.name}</p>
+        <p   className={`con-TimesTamp ${themeClass}`}>{props.TimesTamps}</p>
         </div>
         <IconButton>
-        <DeleteIcon />
+        <DeleteIcon  className={` ${themeClass}`}/>
         </IconButton>
    
     </div>
-    <div className='messages-container'>
+    <div   className={`messages-container ${themeClass}`}>
     <MessageOthers />
     <MessageSelf />
     <MessageOthers />
@@ -35,10 +38,10 @@ export default function ChatArea() {
     <MessageSelf />
     
     </div>
-    <div className='text-input-area'>
-    <input placeholder='Tape a Message' className='search-box' />
+    <div className={`text-input-area ${themeClass}`}>
+    <input placeholder='Tape a Message'  className={`search-box ${themeClass}`}/>
     <IconButton>
-        <SendIcon />
+        <SendIcon className={` ${themeClass}`}/>
         </IconButton>
     </div>
     </div>
