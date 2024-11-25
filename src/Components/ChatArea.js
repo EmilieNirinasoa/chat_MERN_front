@@ -5,7 +5,7 @@ import SendIcon from '@mui/icons-material/Send';
 import MessageOthers from './MessageOthers';
 import MessageSelf from './MessageSelf';
 import { useSelector } from 'react-redux';
-
+import {AnimatePresence, motion} from 'framer-motion'
 export default function ChatArea() {
   const lightTheme = useSelector((state) => state.themeKey);
   const themeClass = lightTheme ? 'light' : 'dark';
@@ -14,7 +14,18 @@ export default function ChatArea() {
     TimesTamps:'12:00'
   }
   return (
-    <div className={`ChatArea-Container ${themeClass}`}>
+    <AnimatePresence>
+    <motion.div 
+    initial={{opacity:0,scale:0}} 
+    animate ={{opacity:1,scale:1}} 
+    exit={{opacity:0,scale:0}}
+    transition={{
+       ease:"anticipate",
+       duration:'0.3'
+    }}
+    className={`ChatArea-Container ${themeClass}`}>
+    
+   
          <div  className={`ChatArea-header ${themeClass}`}>
          <p  className={`con-icon ${themeClass}`}>{props.name[0]}</p>
         
@@ -44,6 +55,7 @@ export default function ChatArea() {
         <SendIcon className={` ${themeClass}`}/>
         </IconButton>
     </div>
-    </div>
+    </motion.div>
+    </AnimatePresence>
   );
 }
