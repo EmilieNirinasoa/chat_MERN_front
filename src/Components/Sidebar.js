@@ -11,6 +11,7 @@ import { IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from './Features/themeSlice';
+import Conversations from './Conversations';
  // Assurez-vous d'avoir les styles nécessaires
 
 export default function Sidebar() {
@@ -18,24 +19,19 @@ export default function Sidebar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [conversations, setConversations] = useState([
-    { name: 'Test#1', LastMessage: 'Last Message #1', TimeStamps: 'today' },
-    { name: 'Test#2', LastMessage: 'Last Message #2', TimeStamps: 'today' },
-    { name: 'Test#3', LastMessage: 'Last Message #3', TimeStamps: 'today' },
-  ]);
-
+ 
   const themeClass = lightTheme ? 'light' : 'dark';
 
   return (
     <div className={`sidebar-container ${themeClass}`}>
       {/* Header */}
       <div className={`sb-header ${themeClass}`}>
-        <div>
+        <div className='other-icons'>
           <IconButton>
             <AccountCircleIcon className={` ${themeClass}`}/>
           </IconButton>
         </div>
-        <div>
+        <div className='other-icons'>
           <IconButton onClick={() => navigate('Users')}>
             <PersonAddIcon  className={` ${themeClass}`}/>
           </IconButton>
@@ -63,11 +59,7 @@ export default function Sidebar() {
       </div>
 
       {/* Conversations */}
-      <div className={`sb-conversation ${themeClass}`}>
-        {conversations.map((conversation) => (
-          <ConversationItem props={conversation} key={conversation.name} />
-        ))}
-      </div>
+     <Conversations/>
     </div>
   );
 }

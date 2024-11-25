@@ -2,6 +2,7 @@ import React from 'react';
 
 export default function MessageOthers() {
     var props1={name:'Emilie',LastMessage:'salut'}
+    
   return (
 <div className='other-message-container'>
 <div className='conversation-container'>
