@@ -27,7 +27,7 @@ const Welcome = () => {
     className={`welcome-container ${themeClass}`}>
     
       <motion.img drag whileTap={{scale:1.05,rotate:360}} src={Logo} alt='logo' className={`welcome-logo ${themeClass}`}/>
-      <b>Hi,{userData.data.name}</b>
+      <b>Hi,{!userData.data?(userData.user.name):(userData.data.name)}</b>
       <p> view and text please</p>
       </motion.div>
     </AnimatePresence>
