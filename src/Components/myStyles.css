@@ -361,6 +361,13 @@ flex: 1;
     flex: 1;
     justify-content: space-evenly;
 }
+.hyper{
+    color: #2d3941;
+    margin-left: 1vw;
+}
+.login-text{
+    margin-bottom: 2vh;
+}
 @media only screen and (max-width: 40em) {
     .sb-search{
         display: none;
