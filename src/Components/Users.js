@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './myStyles.css'
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from '@mui/material';
 import { useSelector } from 'react-redux';
 import {AnimatePresence, motion} from 'framer-motion'
+import axios from 'axios';
 export default function Users() {
+    const [Users,setUsers]=useState([])
     const lightTheme = useSelector((state) => state.themeKey);
   const themeClass = lightTheme ? 'light' : 'dark';
+
+  useEffect(()=>{
+    const config= {
+        Authorization: `Bearer ${!userData.data?(userData.user.token):(userData.data.token)}`
+    }
+    axios.get('http://8080/user/fecthUsers',config).then(data)
+    setUsers(data.data)
+    console.log("data",data)
+  },[refresh])
   return (
     <AnimatePresence>
     <motion.div 
