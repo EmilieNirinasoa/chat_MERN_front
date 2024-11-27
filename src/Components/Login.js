@@ -43,6 +43,9 @@ const ChangeHandler=(e)=>{
       }
 
   }
+  const handleLoginClick = () => {
+    setShowLogin(true);
+  };
 
   const SignupHandler = async (e) => {
     setLoading(true);
@@ -91,9 +94,10 @@ const ChangeHandler=(e)=>{
   
   return (
     <>
-    <Backdrop sx={{color:"#fff",zIndex:(theme)=>theme.zIndex.drawer+1}}>
-      <CircularProgress color='secondary'/>
-    </Backdrop>
+  <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
+  <CircularProgress color="secondary" />
+</Backdrop>
+
      <div className='login-container'>
     <div className='image-container'>
     <motion.img drag whileTap={{scale:1.05,rotate:360}} src={Logo} alt='logo' className={`welcome-logo ${themeClass}`}/>
@@ -107,7 +111,7 @@ const ChangeHandler=(e)=>{
       <TextField id="standard-basic" label="Enter Email Address" type='email' autoComplete='current-passord' variant="outlined" onChange={ChangeHandler} name='email' color='secondary'/>
       <TextField id="standard-basic" label="Password" type='password' autoComplete='current-passord' variant="outlined" onChange={ChangeHandler} name='password' color='secondary'/>
       <Button variant='outlined' onClick={SignupHandler} color='#2d3941'> sign Up</Button>
-      <p >Already have Account?<span className='hyper' onClick={()=>{setShowLogin(true)}}>Login </span></p>
+      <p >Already have Account?<span className='hyper' onClick={handleLoginClick}>Login</span></p>
       </div>
     ):(
       <div className='login-box'>
