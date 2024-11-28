@@ -1,17 +1,16 @@
-const initialState = {
-    sidebarRefresh: false,
-};
+import { createSlice } from '@reduxjs/toolkit';
 
-const sidebarReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'REFRESH_SIDEBAR':
-            return {
-                ...state,
-                sidebarRefresh: !state.sidebarRefresh, // Alterne l'état pour forcer un rafraîchissement
-            };
-        default:
-            return state;
-    }
-};
+export const sidebarSlice = createSlice({
+  name: 'sidebar',
+  initialState: {
+    refreshSidebar: false, // Indique si la sidebar doit être actualisée
+  },
+  reducers: {
+    refreshSidebarFun: (state) => {
+      state.refreshSidebar = !state.refreshSidebar; // Alterne pour forcer un rafraîchissement
+    },
+  },
+});
 
-export default sidebarReducer;
+export const { refreshSidebarFun } = sidebarSlice.actions;
+export default sidebarSlice.reducer;

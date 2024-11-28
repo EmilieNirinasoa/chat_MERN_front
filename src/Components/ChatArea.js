@@ -1,33 +1,88 @@
-import React, { useEffect, useState } from 'react';
-import { IconButton, Skeleton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
-import MessageOthers from './MessageOthers';
-import MessageSelf from './MessageSelf';
-import { useSelector } from 'react-redux';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { IconButton, Skeleton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SendIcon from "@mui/icons-material/Send";
+import MessageOthers from "./MessageOthers";
+import MessageSelf from "./MessageSelf";
+import { useSelector } from "react-redux";
+import { AnimatePresence, motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { io } from "socket.io-client";
 
 const ENDPOINT = "http://localhost:8080";
-var socket;
 
 export default function ChatArea() {
   const dyParams = useParams();
   const [allMessages, setAllMessages] = useState([]);
+  const [allMessagesCopy, setAllMessagesCopy] = useState([]);
   const [messageContent, setMessageContent] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [refresh, setRefresh] = useState(false);
+  const [SocketInstance, setSocketInstance] = useState(null);
+  const [socketConnectionStatus, setsocketConnectionStatus] = useState(false);
 
-  const { _id: chat_id, name: chat_user } = dyParams;
-  const userData = JSON.parse(localStorage.getItem('userData'));
+  // Extraction et nettoyage des paramètres
+  const rawChatId = dyParams._id || "";
+  const [chat_id, chat_user] = rawChatId.split("&");
+  const chatUser = chat_user || "Unknown User";
+
+  const userData = JSON.parse(localStorage.getItem("userData"));
   const lightTheme = useSelector((state) => state.themeKey);
-  const themeClass = lightTheme ? 'light' : 'dark';
+  const themeClass = lightTheme ? "light" : "dark";
+
+  const sendMessage = () => {
+    if (messageContent.trim() === "") return;
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userData.data.token}`,
+      },
+    };
+
+    axios
+      .post(
+        `${ENDPOINT}/message/`,
+        { content: messageContent, chatId: chat_id },
+        config
+      )
+      .then(() => {
+        setMessageContent("");
+        setRefresh(!refresh);
+      })
+      .catch((error) => {
+        console.error("Error sending message:", error.response?.data || error.message);
+      });
+  };
 
   useEffect(() => {
-    if (userData) {
+    const socket = io(ENDPOINT);
+    setSocketInstance(socket);
+
+    socket.emit("setup", userData);
+    socket.on("connection", () => {
+      setsocketConnectionStatus(true);
+    });
+
+    socket.on("message received", (newMessage) => {
+      if (!allMessagesCopy || allMessagesCopy._id === newMessage._id) {
+        return;
+      } else {
+        setAllMessages((prevMessages) => [...prevMessages, newMessage]);
+      }
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [userData, allMessagesCopy]);
+
+  useEffect(() => {
+    if (userData && chat_id) {
       const config = {
-        Authorization: `Bearer ${userData.data.token}`,
+        headers: {
+          Authorization: `Bearer ${userData.data.token}`,
+        },
       };
 
       axios
@@ -35,39 +90,19 @@ export default function ChatArea() {
         .then(({ data }) => {
           setAllMessages(data);
           setLoaded(true);
-
-          socket.emit('join chat', chat_id);
         })
-        .catch((error) => console.error('Error fetching messages:', error));
+        .catch((error) => {
+          console.error("Error fetching messages:", error.response?.data || error.message);
+        });
     }
   }, [refresh, chat_id, userData?.data.token]);
 
-  const sendMessage = () => {
-    if (messageContent.trim() === '') return;
-
-    const config = {
-      Authorization: `Bearer ${userData.data.token}`,
-    };
-
-    axios
-      .post(
-        `${ENDPOINT}/message`,
-        { content: messageContent, chatId: chat_id },
-        config
-      )
-      .then(() => {
-        setMessageContent('');
-        setRefresh(!refresh); // Trigger re-fetch of messages
-      })
-      .catch((error) => console.error('Error sending message:', error));
-  };
-
   if (!loaded) {
     return (
-      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        <Skeleton variant="rectangular" sx={{ width: '100%', borderRadius: '10px' }} height={60} />
-        <Skeleton variant="rectangular" sx={{ width: '100%', borderRadius: '10px', flexGrow: 1 }} height={60} />
-        <Skeleton variant="rectangular" sx={{ width: '100%', borderRadius: '10px' }} height={60} />
+      <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "10px" }}>
+        <Skeleton variant="rectangular" sx={{ width: "100%", borderRadius: "10px" }} height={60} />
+        <Skeleton variant="rectangular" sx={{ width: "100%", borderRadius: "10px", flexGrow: 1 }} height={60} />
+        <Skeleton variant="rectangular" sx={{ width: "100%", borderRadius: "10px" }} height={60} />
       </div>
     );
   }
@@ -78,7 +113,7 @@ export default function ChatArea() {
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
-        transition={{ ease: 'anticipate', duration: 0.3 }}
+        transition={{ ease: "anticipate", duration: 0.3 }}
         className={`ChatArea-Container ${themeClass}`}
       >
         <div className={`ChatArea-header ${themeClass}`}>
@@ -114,7 +149,7 @@ export default function ChatArea() {
             value={messageContent}
             onChange={(e) => setMessageContent(e.target.value)}
             onKeyDown={(event) => {
-              if (event.code === 'Enter') {
+              if (event.code === "Enter") {
                 sendMessage();
               }
             }}

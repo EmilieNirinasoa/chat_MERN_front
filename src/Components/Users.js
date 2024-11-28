@@ -8,7 +8,7 @@ import Logo from './images/env2.png';
 import { myContext } from './MainContainer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { refreshSidebarFun } from './Features/themeSlice';
+import { refreshSidebarFun } from './Features/refreshSidebarFun';
 
 export default function Users() {
   const [refresh, setRefresh] = useState(myContext);
@@ -16,7 +16,7 @@ export default function Users() {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userData=JSON.parse(sessionStorage.getItem('userData'))
+  const userData=JSON.parse(localStorage.getItem('userData'))
   const lightTheme = useSelector((state) => state.themeKey);
   const themeClass = lightTheme ? 'light' : 'dark';
 
@@ -59,7 +59,7 @@ export default function Users() {
     };
 
     axios
-      .post('http://localhost:8080/chat', { userId: user._id }, config)
+      .post('http://localhost:8080/chat/', { userId: user._id }, config)
       .then(() => {
         dispatch(refreshSidebarFun());
       })

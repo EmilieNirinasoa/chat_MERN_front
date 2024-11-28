@@ -7,13 +7,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Logo from './images/env2.png';
-import {refreshSidebarFun} from './Features/themeSlice';
+import {refreshSidebarFun} from './Features/refreshSidebarFun';
 
 export default function UsersGroups() {
   const [groups, setGroups] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userData=JSON.parse(sessionStorage.getItem('userData'))
+  const userData=JSON.parse(localStorage.getItem('userData'))
   const lightTheme = useSelector((state) => state.themeKey);
   const themeClass = lightTheme ? 'light' : 'dark';
 
