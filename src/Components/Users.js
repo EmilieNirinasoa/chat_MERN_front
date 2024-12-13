@@ -8,7 +8,7 @@ import Logo from './images/env2.png';
 import { myContext } from './MainContainer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { refreshSidebarFun } from './Features/refreshSidebarFun';
+import { toggleRefreshSidebar } from './Features/sidebarSlice';
 
 export default function Users() {
   const [refresh, setRefresh] = useState(myContext);
@@ -17,7 +17,7 @@ export default function Users() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData=JSON.parse(localStorage.getItem('userData'))
-  const lightTheme = useSelector((state) => state.themeKey);
+  const lightTheme = useSelector((state) => state.theme.themeKey);
   const themeClass = lightTheme ? 'light' : 'dark';
 
   if (!userData) {
@@ -61,7 +61,7 @@ export default function Users() {
     axios
       .post('http://localhost:8080/chat/', { userId: user._id }, config)
       .then(() => {
-        dispatch(refreshSidebarFun());
+        dispatch(toggleRefreshSidebar());
       })
       .catch((error) => {
         console.error("Error while joining the chat!", error);

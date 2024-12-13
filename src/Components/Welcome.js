@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import {AnimatePresence, motion} from 'framer-motion'
 import Logo from './images/env2.png'
 const Welcome = () => {
-  const lightTheme = useSelector((state) => state.themeKey);
+  const lightTheme = useSelector((state) => state.theme.themeKey);
   const themeClass = lightTheme ? 'light' : 'dark';
   const userData=JSON.parse(localStorage.getItem("userData"))
   console.log(userData)

@@ -7,14 +7,14 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Logo from './images/env2.png';
-import {refreshSidebarFun} from './Features/refreshSidebarFun';
+import {toggleRefreshSidebar} from './Features/sidebarSlice';
 
 export default function UsersGroups() {
   const [groups, setGroups] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData=JSON.parse(localStorage.getItem('userData'))
-  const lightTheme = useSelector((state) => state.themeKey);
+  const lightTheme = useSelector((state) => state.theme.themeKey);
   const themeClass = lightTheme ? 'light' : 'dark';
 
   // Redirect to login page if user is not authenticated
@@ -71,7 +71,7 @@ export default function UsersGroups() {
         config
       )
       .then(() => {
-        dispatch(refreshSidebarFun()); // Refresh the sidebar after adding to the group
+        dispatch(toggleRefreshSidebar()); // Refresh the sidebar after adding to the group
       })
       .catch((error) => {
         console.error("Error adding to group:", error);

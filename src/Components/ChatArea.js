@@ -28,7 +28,7 @@ export default function ChatArea() {
   const chatUser = chat_user || "Unknown User";
 
   const userData = JSON.parse(localStorage.getItem("userData"));
-  const lightTheme = useSelector((state) => state.themeKey);
+  const lightTheme = useSelector((state) => state.theme.themeKey);
   const themeClass = lightTheme ? "light" : "dark";
 
   const sendMessage = () => {

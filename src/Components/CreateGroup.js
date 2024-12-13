@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 export default function CreateGroup() {
   const userData=JSON.parse(localStorage.getItem("userData"))
   const navigate=useNavigate();
-  const lightTheme = useSelector((state) => state.themeKey);
+  const lightTheme = useSelector((state) => state.theme.themeKey);
   const themeClass = lightTheme ? 'light' : 'dark';
   const [groupName,setGroupName]=useState(true)
   const [Open,setOpen]=useState(true)
