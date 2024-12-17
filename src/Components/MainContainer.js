@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 export const myContext = createContext();
 
 export default function MainContainer() {
-  const lightTheme = useSelector((state) => state.themeKey);
+  const lightTheme = useSelector((state) => state.theme.themeKey);
   const themeClass = lightTheme ? 'light' : 'dark';
   return (
     <div className={`main-container ${themeClass}`}>

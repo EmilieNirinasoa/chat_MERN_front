@@ -11,33 +11,30 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from './Features/themeSlice';
 import axios from 'axios';
+import Logout from './Logout';
 
 export default function Sidebar() {
   const [conversations, setConversations] = useState([]);
   const lightTheme = useSelector((state) => state.theme.themeKey);
-useState(()=>{
-  console.log('lightTheme',(state) => state.theme.themeKey)
-})
-  
   const themeClass = lightTheme ? 'light' : 'dark';
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userData = JSON.parse(localStorage.getItem('userData'));
 
-  if (!userData) {
-    console.log('User not authenticated');
-    navigate('/');
-  }
-
-  const user = userData?.data;
-
   useEffect(() => {
+    if (!userData) {
+      console.log('User not authenticated');
+      navigate('/');
+      return;
+    }
+
     const fetchConversations = async () => {
       try {
         const config = {
-          headers: { Authorization: `Bearer ${user?.token}` },
+          headers: { Authorization: `Bearer ${userData?.data?.token}` },
         };
-        const response = await axios.get('http://localhost:8080/chat/', config);
+        const response = await axios.get('https://chat-server-m3ess7ows-emilienirinasoas-projects.vercel.app/chat/', config);
         setConversations(response.data);
       } catch (error) {
         console.error('Error fetching conversations:', error);
@@ -45,7 +42,7 @@ useState(()=>{
     };
 
     fetchConversations();
-  }, [user?.token]);
+  }, [userData, navigate]);
 
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
@@ -57,33 +54,35 @@ useState(()=>{
       <div className={`sb-header ${themeClass}`}>
         <div className="other-icons">
           <IconButton>
-            <AccountCircleIcon className={`${themeClass}`} />
+            <AccountCircleIcon className={themeClass} />
           </IconButton>
         </div>
         <div className="other-icons">
           <IconButton onClick={() => navigate('Users')}>
-            <PersonAddIcon className={`${themeClass}`} />
+            <PersonAddIcon className={themeClass} />
           </IconButton>
           <IconButton onClick={() => navigate('Groups')}>
-            <GroupAddIcon className={`${themeClass}`} />
+            <GroupAddIcon className={themeClass} />
           </IconButton>
           <IconButton onClick={() => navigate('create_Group')}>
-            <AddCircleIcon className={`${themeClass}`} />
+            <AddCircleIcon className={themeClass} />
           </IconButton>
-          <IconButton onClick={handleToggleTheme()}>
+        
+          <IconButton onClick={handleToggleTheme}>
             {lightTheme ? (
-              <LightModeIcon className={`${themeClass}`} />
+              <LightModeIcon className={themeClass} />
             ) : (
-              <NightlightIcon className={`${themeClass}`} />
+              <NightlightIcon className={themeClass} />
             )}
           </IconButton>
+          <Logout/>
         </div>
       </div>
 
       {/* Search */}
       <div className={`sb-search ${themeClass}`}>
         <IconButton>
-          <SearchIcon className={`${themeClass}`} />
+          <SearchIcon className={themeClass} />
         </IconButton>
         <input
           placeholder="Search"
@@ -93,7 +92,7 @@ useState(()=>{
 
       {/* Conversations */}
       <div className={`sb-conversations ${themeClass}`}>
-        {conversations.map((conversation, index) => {
+        {conversations.map((conversation) => {
           const chatName = conversation.isGroupChat
             ? conversation.chatName
             : conversation.users.find((u) => u._id !== userData.data.id)?.name;

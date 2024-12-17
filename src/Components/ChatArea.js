@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client";
 
-const ENDPOINT = "http://localhost:8080";
+const ENDPOINT = "https://chat-server-m3ess7ows-emilienirinasoas-projects.vercel.app";
 
 export default function ChatArea() {
   const dyParams = useParams();
@@ -28,7 +28,7 @@ export default function ChatArea() {
   const chatUser = chat_user || "Unknown User";
 
   const userData = JSON.parse(localStorage.getItem("userData"));
-  const lightTheme = useSelector((state) => state.themeKey);
+  const lightTheme = useSelector((state) => state.theme.themeKey);
   const themeClass = lightTheme ? "light" : "dark";
 
   const sendMessage = () => {

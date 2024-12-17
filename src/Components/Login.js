@@ -29,7 +29,7 @@ const ChangeHandler=(e)=>{
             "content-type":"application/json"
           }  
         }
-        const response= await axios.post('http://localhost:8080/user/login',data,config);
+        const response= await axios.post('https://chat-server-m3ess7ows-emilienirinasoas-projects.vercel.app//user/login',data,config);
         console.log("login",response)
         setLoginStatus({msg:"success",key:Math.random()})
         setLoading(false)
@@ -57,7 +57,7 @@ const ChangeHandler=(e)=>{
         },
       };
       const response = await axios.post(
-        "http://localhost:8080/user/register",
+        "https://chat-server-m3ess7ows-emilienirinasoas-projects.vercel.app/user/register",
         data,
         config
       );

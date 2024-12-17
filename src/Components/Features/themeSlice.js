@@ -5,7 +5,7 @@ const themeSlice = createSlice({
   initialState: { themeKey: true }, // true = light, false = dark
   reducers: {
     toggleTheme: (state) => {
-      state.themeKey = !state.themeKey;
+      state.themeKey = !state.themeKey; // Alterne entre thème clair et sombre
     },
   },
 });
