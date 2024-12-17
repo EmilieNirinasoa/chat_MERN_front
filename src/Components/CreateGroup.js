@@ -20,7 +20,7 @@ export default function CreateGroup() {
     const config= {
       Authorization: `Bearer ${!userData.data?(userData.user.token):(userData.data.token)}`
   }
-  axios.post('https://chat-server-m3ess7ows-emilienirinasoas-projects.vercel.app/chat/createGroup',{
+  axios.post('https://chat-server-rho-three.vercel.app/chat/createGroup',{
     name:groupName,
     users:'["647d699e4c3",647d999e4c3"]'
   },config)

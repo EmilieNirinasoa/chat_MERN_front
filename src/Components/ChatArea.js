@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client";
 
-const ENDPOINT = "https://chat-server-m3ess7ows-emilienirinasoas-projects.vercel.app";
+const ENDPOINT = "https://chat-server-rho-three.vercel.app";
 
 export default function ChatArea() {
   const dyParams = useParams();

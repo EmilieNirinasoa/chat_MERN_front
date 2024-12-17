@@ -33,7 +33,7 @@ export default function Users() {
     };
 
     axios
-      .get('https://chat-server-m3ess7ows-emilienirinasoas-projects.vercel.app/user/fecthUsers', config)
+      .get('https://chat-server-rho-three.vercel.app/user/fecthUsers', config)
       .then((response) => {
         setUsers(response.data);
       })
@@ -59,7 +59,7 @@ export default function Users() {
     };
 
     axios
-      .post('http://localhost:8080/chat/', { userId: user._id }, config)
+      .post('https://chat-server-rho-three.vercel.app/chat/', { userId: user._id }, config)
       .then(() => {
         dispatch(toggleRefreshSidebar());
       })

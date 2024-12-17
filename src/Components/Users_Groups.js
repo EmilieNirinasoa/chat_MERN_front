@@ -36,7 +36,7 @@ export default function UsersGroups() {
       };
 
       axios
-        .get('https://chat-server-m3ess7ows-emilienirinasoas-projects.vercel.app/chat/fetchGroups', config)
+        .get('https://chat-server-rho-three.vercel.app/chat/fetchGroups', config)
         .then((response) => {
           setGroups(response.data);
         })
@@ -66,7 +66,7 @@ export default function UsersGroups() {
 
     axios
       .put(
-        'http://localhost:8080/chat/addSelfToGroup',
+        'https://chat-server-rho-three.vercel.app/chat/addSelfToGroup',
         { chatId: groupId, userId: userData.data._id },
         config
       )
