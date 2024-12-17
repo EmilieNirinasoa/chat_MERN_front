@@ -36,7 +36,7 @@ export default function UsersGroups() {
       };
 
       axios
-        .get('http://localhost:8080/chat/fetchGroups', config)
+        .get('https://chat-server-m3ess7ows-emilienirinasoas-projects.vercel.app/chat/fetchGroups', config)
         .then((response) => {
           setGroups(response.data);
         })

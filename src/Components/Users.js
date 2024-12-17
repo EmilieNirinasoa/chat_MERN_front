@@ -33,7 +33,7 @@ export default function Users() {
     };
 
     axios
-      .get('http://localhost:8080/user/fecthUsers', config)
+      .get('https://chat-server-m3ess7ows-emilienirinasoas-projects.vercel.app/user/fecthUsers', config)
       .then((response) => {
         setUsers(response.data);
       })

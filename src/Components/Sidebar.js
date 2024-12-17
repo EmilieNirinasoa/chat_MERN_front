@@ -34,7 +34,7 @@ export default function Sidebar() {
         const config = {
           headers: { Authorization: `Bearer ${userData?.data?.token}` },
         };
-        const response = await axios.get('http://localhost:8080/chat/', config);
+        const response = await axios.get('https://chat-server-m3ess7ows-emilienirinasoas-projects.vercel.app/chat/', config);
         setConversations(response.data);
       } catch (error) {
         console.error('Error fetching conversations:', error);
